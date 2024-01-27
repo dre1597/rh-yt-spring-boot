@@ -1,10 +1,9 @@
 package org.example.rhytspringboot.controller;
 
-import org.example.rhytspringboot.entities.ManufacturerEntity;
-import org.example.rhytspringboot.entities.ModelEntity;
 import org.example.rhytspringboot.entities.VehicleEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -12,36 +11,12 @@ import java.util.List;
 public class VehicleController {
   @GetMapping
   public List<VehicleEntity> index() {
-    return List.of(new VehicleEntity(
-        "any_id",
-        0,
-        "any_color",
-        "any_description",
-        true,
-        2024,
-        new ModelEntity(
-            "any_id",
-            "any_name",
-            new ManufacturerEntity("any_id", "any_name")
-        )
-    ));
+    return Collections.emptyList();
   }
 
   @GetMapping("/{id}")
   public VehicleEntity show(@PathVariable("id") String id) {
-    return new VehicleEntity(
-        "any_id",
-        0,
-        "any_color",
-        "any_description",
-        true,
-        2024,
-        new ModelEntity(
-            "any_id",
-            "any_name",
-            new ManufacturerEntity("any_id", "any_name")
-        )
-    );
+    return null;
   }
 
   @PostMapping
