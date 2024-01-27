@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.rhytspringboot.dtos.CreateVehicleInput;
 import org.example.rhytspringboot.entities.VehicleEntity;
 import org.example.rhytspringboot.services.VehicleService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class VehicleController {
   }
 
   @PostMapping
-  public VehicleEntity create(@RequestBody final CreateVehicleInput input) {
+  public VehicleEntity create(@RequestBody @Validated final CreateVehicleInput input) {
     return this.service.create(input);
   }
 
