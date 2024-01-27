@@ -2,6 +2,7 @@ package org.example.rhytspringboot.services;
 
 import lombok.AllArgsConstructor;
 import org.example.rhytspringboot.dtos.CreateVehicleInput;
+import org.example.rhytspringboot.dtos.UpdateVehicleInput;
 import org.example.rhytspringboot.dtos.VehicleDetails;
 import org.example.rhytspringboot.entities.VehicleEntity;
 import org.example.rhytspringboot.pagination.Page;
@@ -10,6 +11,8 @@ import org.example.rhytspringboot.repositories.VehicleRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -47,13 +50,25 @@ public class VehicleService {
     return VehicleDetails.from(saved);
   }
 
-  public VehicleDetails update(final String id, final VehicleEntity vehicle) {
-    var existing = this.vehicleRepository.save(vehicle);
+  public VehicleDetails update(final String id, final UpdateVehicleInput vehicle) {
+    var existing = this.vehicleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Vehicle not found"));
 
-    return VehicleDetails.from(existing);
+    existing.setKilometers(vehicle.kilometers());
+    existing.setColor(vehicle.color());
+    existing.setDescription(vehicle.description());
+    existing.setYear(vehicle.year());
+
+    var existingModel = Optional.of(existing.getModel()).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Model not found"));
+    existing.setModel(existingModel);
+
+    var saved = this.vehicleRepository.save(existing);
+
+    return VehicleDetails.from(saved);
   }
 
   public void destroy(final String id) {
-    this.vehicleRepository.deleteById(id);
+    if (this.vehicleRepository.existsById(id)) {
+      this.vehicleRepository.deleteById(id);
+    }
   }
 }

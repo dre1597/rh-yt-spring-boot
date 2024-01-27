@@ -2,7 +2,7 @@ GET http://localhost:8080/
 
 ###
 
-GET http://localhost:8080/vehicles?page=0&size=1
+GET http://localhost:8080/vehicles?page=0&size=10
 
 ###
 
@@ -20,3 +20,20 @@ Content-Type: application/json
   "year": 2020,
   "modelId": "5ee3ecab-f994-42b9-8b64-5f3db0b246bf"
 }
+
+###
+
+PUT http://localhost:8080/vehicles/39136169-7095-41f3-a2ae-2994ed46d2c6
+Content-Type: application/json
+
+{
+  "kilometers": 123456,
+  "color": "updated_color",
+  "description": "updated_description",
+  "year": 2020,
+  "modelId": "5ee3ecab-f994-42b9-8b64-5f3db0b246bf"
+}
+
+###
+
+DELETE http://localhost:8080/vehicles/39136169-7095-41f3-a2ae-2994ed46d2c6

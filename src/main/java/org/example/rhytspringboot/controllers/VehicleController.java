@@ -2,8 +2,8 @@ package org.example.rhytspringboot.controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.rhytspringboot.dtos.CreateVehicleInput;
+import org.example.rhytspringboot.dtos.UpdateVehicleInput;
 import org.example.rhytspringboot.dtos.VehicleDetails;
-import org.example.rhytspringboot.entities.VehicleEntity;
 import org.example.rhytspringboot.pagination.Page;
 import org.example.rhytspringboot.services.VehicleService;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +32,7 @@ public class VehicleController {
   }
 
   @PutMapping("/{id}")
-  public VehicleDetails update(@PathVariable("id") final String id, @RequestBody final VehicleEntity vehicle) {
+  public VehicleDetails update(@PathVariable("id") final String id, @RequestBody final UpdateVehicleInput vehicle) {
     return this.service.update(id, vehicle);
   }
 
