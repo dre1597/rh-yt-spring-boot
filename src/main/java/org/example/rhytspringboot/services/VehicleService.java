@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import org.example.rhytspringboot.dtos.CreateVehicleInput;
 import org.example.rhytspringboot.dtos.VehicleDetails;
 import org.example.rhytspringboot.entities.VehicleEntity;
+import org.example.rhytspringboot.pagination.Page;
 import org.example.rhytspringboot.repositories.ModelRepository;
 import org.example.rhytspringboot.repositories.VehicleRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -19,8 +19,8 @@ public class VehicleService {
   private final VehicleRepository vehicleRepository;
   private final ModelRepository modelRepository;
 
-  public List<VehicleDetails> index() {
-    return this.vehicleRepository.findAll().stream().map(VehicleDetails::from).toList();
+  public Page<VehicleDetails> index(Pageable pageable) {
+    return Page.from(this.vehicleRepository.findAll(pageable).map(VehicleDetails::from));
   }
 
   public VehicleDetails show(final String id) {

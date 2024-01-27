@@ -2,11 +2,11 @@ GET http://localhost:8080/
 
 ###
 
-GET http://localhost:8080/vehicles
+GET http://localhost:8080/vehicles?page=0&size=1
 
 ###
 
-GET http://localhost:8080/vehicles/1
+GET http://localhost:8080/vehicles/39136169-7095-41f3-a2ae-2994ed46d2c6
 
 ###
 

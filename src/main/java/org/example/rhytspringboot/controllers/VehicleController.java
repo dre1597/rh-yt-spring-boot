@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import org.example.rhytspringboot.dtos.CreateVehicleInput;
 import org.example.rhytspringboot.dtos.VehicleDetails;
 import org.example.rhytspringboot.entities.VehicleEntity;
+import org.example.rhytspringboot.pagination.Page;
 import org.example.rhytspringboot.services.VehicleService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -17,8 +17,8 @@ public class VehicleController {
   private VehicleService service;
 
   @GetMapping
-  public List<VehicleDetails> index() {
-    return this.service.index();
+  public Page<VehicleDetails> index(Pageable pageable) {
+    return this.service.index(pageable);
   }
 
   @GetMapping("/{id}")
