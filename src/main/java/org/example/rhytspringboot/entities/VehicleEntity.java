@@ -43,4 +43,13 @@ public class VehicleEntity {
       inverseJoinColumns = @JoinColumn(name = "optional_id")
   )
   private List<OptionalEntity> optionals;
+
+  public VehicleEntity(int kilometers, String color, String description, boolean isAvailable, int year, ModelEntity model) {
+    this.kilometers = kilometers;
+    this.color = color;
+    this.description = description;
+    this.isAvailable = isAvailable;
+    this.year = year;
+    this.model = model;
+  }
 }

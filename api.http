@@ -7,3 +7,16 @@ GET http://localhost:8080/vehicles
 ###
 
 GET http://localhost:8080/vehicles/1
+
+###
+
+POST http://localhost:8080/vehicles
+Content-Type: application/json
+
+{
+  "kilometers": 123456,
+  "color": "any_color",
+  "description": "any_description",
+  "year": 2020,
+  "modelId": "5ee3ecab-f994-42b9-8b64-5f3db0b246bf"
+}
